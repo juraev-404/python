@@ -1,0 +1,20 @@
+1  cd ~
+2  nano background_task.py
+3  chmod +x background_task.py
+4  sudo cp background_task.py /usr/local/bin/background_task
+5  sudo nano /etc/systemd/system/background_task.service
+6  sudo systemctl daemon-reload
+7  sudo systemctl enable background_task.service
+8  sudo systemctl start background_task.service
+9  systemctl status background_task.service
+10 sudo cp mydaemon /usr/local/bin/
+11 sudo chmod +x /usr/local/bin/mydaemon
+12
+13 sudo systemctl daemon-reload
+14 sudo systemctl enable mydaemon
+15 sudo systemctl start mydaemon
+16 sudo cp install_mydaemon.sh /usr/local/bin/
+17 sudo chmod +x /usr/local/bin/install_mydaemon.sh
+18
+19 sudo /usr/local/bin/install_mydaemon.sh
+20 history > $USER.txt

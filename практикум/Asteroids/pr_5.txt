@@ -1,0 +1,44 @@
+1  gnome-software
+2  sudo apt update
+3  sudo apt install -y chromium-browser
+4  chromium-browser
+5  sudo apt remove -y firefox
+6  sudo apt install -y firefox
+7  sudo apt remove -y chromium-browser
+8  synaptic
+9  dpkg -l
+10 dpkg -l | wc -l
+11 dpkg -l | grep gnome
+12 dpkg -l | grep gnome | wc -l
+13 dpkg -l | grep mc
+14 apt show mc
+15 sudo apt remove --simulate perl
+16 sudo apt remove --simulate perl | grep "^Remv" | wc -l
+17 sudo apt install --simulate apache2
+18 sudo apt install --simulate vsftpd
+19 sudo apt install --simulate webmin
+20 dpkg -l
+21 dpkg -l | wc -l
+22 dpkg -l | grep gnome
+23 dpkg -l | grep gnome | wc -l
+24 dpkg -l | grep mc
+25 apt show mc
+26 sudo snap install pycharm-community --classic
+27 pycharm-community
+28 sudo apt install -y kde-plasma-desktop
+29 sudo systemctl reboot
+30 cd ~/downloads
+31 wget https://example.com/program-1.0.tar.gz
+32 tar -xzf program-1.0.tar.gz
+33 cd program-1.0
+34 ./configure
+35 make
+36 sudo make install
+37 sudo apt update
+38 sudo apt install -y python3-pip
+39 pip3 install tensorflow-gpu
+40 python3
+41 >>> import tensorflow as tf
+42 >>> print(tf.__version__)
+43 exit()
+44 history > $USER.txt

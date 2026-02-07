@@ -1,0 +1,37 @@
+1  free -h
+2  swapon --show
+3  du -sh ~
+4  du -sh /etc
+5  du -sh /tmp
+6  find ~ -type f -name "*.txt"
+7  find ~ -type f | wc -l
+8  cat /etc/fstab
+9  grep " / " /etc/fstab
+10 grep swap /etc/fstab
+11 grep -v "^#" /etc/fstab
+12 lsblk -f20 
+13 lsblk
+14 df -h
+15 mount
+16 lsblk -f
+17 df -h /
+18 df -h /home
+19 df -h /boot
+20 df -h /tmp
+21 swapon --show
+22 lsblk
+23 mount | grep media
+24 sudo umount /dev/sdb1
+25 sudo mkdir -p /mnt/usb
+26 sudo mount /dev/sdb1 /mnt/usb
+27 df -h /mnt/usb
+28 sudo apt update
+29 sudo apt install -y build-essential dkms linux-headers-$(uname -r)
+30 sudo mount /dev/cdrom /mnt
+31 sudo /mnt/VBoxLinuxAdditions.run
+32 sudo reboot
+33 ls /media
+34 free -h
+35 swapon --show
+36 cat /etc/fstab
+37 history > $USER.txt

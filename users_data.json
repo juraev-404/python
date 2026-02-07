@@ -1,0 +1,15 @@
+{
+  "users": {
+    "6085256368": {
+      "registered": "2025-10-29 01:16:14",
+      "level": "beginner",
+      "daily_goal": 5,
+      "words_learned": 5,
+      "exercises_done": 0,
+      "last_active": "2025-10-29 01:18:53",
+      "daily_words_sent": true,
+      "current_exercise": null
+    }
+  },
+  "statistics": {}
+}

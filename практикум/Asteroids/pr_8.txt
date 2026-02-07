@@ -1,0 +1,28 @@
+1  touch hello.sh
+2  nano hello.sh
+3  bash hello.sh
+4  chmod +x hello.sh
+5  ./hello.sh
+6  hello.sh
+7  mkdir -p ~/bin
+8  mv hello.sh ~/bin
+9  export PATH="$PATH:$HOME/bin"
+10 hello.sh
+11 mkdir -p /tmp/shared
+12 chmod 777 /tmp/shared
+13 echo "$PWD"
+14 echo "$HOME"
+15 export NEWVAR=1982
+16 touch adduser.sh
+17 nano adduser.sh
+18 chmod +x adduser.sh
+19 ./adduser.sh testuser testpass
+20 touch menu.sh
+21 nano menu.sh
+22 chmod +x menu.sh
+23 ./menu.sh
+24 touch postgres_install.sh
+25 nano postgres_install.sh
+26 chmod +x postgres_install.sh
+27 ./postgres_install.sh
+28 history > $USER.txt

@@ -2,6 +2,9 @@ li = ['Red', 'Blue', 'Black', 'White', 'Pink']
 li_2 = map(lambda x: list(x), li)
 print(list(li_2))
 
+
+
+
 from functools import reduce
 
 li_n = [1,2,5,4,6,8,9]
