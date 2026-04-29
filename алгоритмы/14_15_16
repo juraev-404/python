@@ -1,26 +1,58 @@
 14
 
-# Алгоритм проверки двудольности
-def is_bipartite(n, edges):
-    graph = [[] for _ in range(n)]
-    for u, v in edges:
-        graph[u].append(v)
-        graph[v].append(u)
+from collections import defaultdict, deque
 
-    color = [-1] * n
+def is_consistent(n, constraints):
+    """
+    n — количество образцов (0..n-1)
+    constraints — список (i, j, type)
+        type = 0 → "одинаковые"
+        type = 1 → "разные"
+    """
+
+    graph = defaultdict(list)
+
+    # строим граф
+    for i, j, t in constraints:
+        graph[i].append((j, t))
+        graph[j].append((i, t))
+
+    color = [-1] * n  # -1 = не посещен, 0 и 1 = группы A/B
+
     for start in range(n):
-        if color[start] == -1:
-            queue = deque([start])
-            color[start] = 0
-            while queue:
-                v = queue.popleft()
-                for neighbor in graph[v]:
-                    if color[neighbor] == -1:
-                        color[neighbor] = 1 - color[v]
-                        queue.append(neighbor)
-                    elif color[neighbor] == color[v]:
-                        return False
+        if color[start] != -1:
+            continue
+
+        # BFS
+        queue = deque([start])
+        color[start] = 0
+
+        while queue:
+            v = queue.popleft()
+
+            for u, t in graph[v]:
+                if t == 0:  # одинаковые
+                    expected = color[v]
+                else:       # разные
+                    expected = 1 - color[v]
+
+                if color[u] == -1:
+                    color[u] = expected
+                    queue.append(u)
+                else:
+                    if color[u] != expected:
+                        return False  # противоречие
+
     return True
+
+n = 4
+constraints = [
+    (0, 1, 0),  # одинаковые
+    (1, 2, 1),  # разные
+    (2, 3, 0)   # одинаковые
+]
+
+print(is_consistent(n, constraints))  # True или False
 
 15
 
