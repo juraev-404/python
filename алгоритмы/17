@@ -13,6 +13,17 @@
 
 второй вариант всегда дешевле, значит лицензии с большим r нужно покупать раньше.
 
+def min_cost_buy(r):
+    # r — список коэффициентов роста (r_j > 1)
+
+    r.sort(reverse=True)  # убывание
+    total_cost = 0
+
+    for t, rate in enumerate(r):
+        total_cost += 100 * (rate ** t)
+
+    return total_cost
+
 17_2
 тут чем позже продаём -> тем дешевле
 Отсортировать по возрастанию r
@@ -30,4 +41,15 @@
 правильный порядок (сначала i, потом j):
 стоимость = 100 * (r_i ^ t) + 100 * (r_j ^ (t + 1))
 
+
+def max_revenue_sell(r):
+    # r — список коэффициентов (r_j < 1)
+
+    r.sort()  # возрастание
+    total = 0
+
+    for t, rate in enumerate(r):
+        total += 100 * (rate ** t)
+
+    return total
 
