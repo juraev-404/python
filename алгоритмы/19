@@ -4,6 +4,7 @@ def min_stations(houses):
     n = len(houses)
     i = 0
     s = 0
+    lc = []
 
     while i < n:
         a = houses[i]
@@ -13,4 +14,6 @@ def min_stations(houses):
         while i < n and houses[i] <= l + 4:
             i += 1
 
-    return s
+        lc.append(l)
+
+    return [s, lc]
