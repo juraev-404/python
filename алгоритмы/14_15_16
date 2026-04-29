@@ -3,13 +3,6 @@
 from collections import defaultdict, deque
 
 def is_consistent(n, constraints):
-    """
-    n — количество образцов (0..n-1)
-    constraints — список (i, j, type)
-        type = 0 → "одинаковые"
-        type = 1 → "разные"
-    """
-
     graph = defaultdict(list)
 
     # строим граф
@@ -52,7 +45,7 @@ constraints = [
     (2, 3, 0)   # одинаковые
 ]
 
-print(is_consistent(n, constraints))  # True или False
+print(is_consistent(n, constraints))
 
 15
 
