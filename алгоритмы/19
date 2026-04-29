@@ -1,0 +1,16 @@
+def min_stations(houses):
+    houses.sort()
+
+    n = len(houses)
+    i = 0
+    s = 0
+
+    while i < n:
+        a = houses[i]
+        l = a + 4
+        s += 1
+
+        while i < n and houses[i] <= l + 4:
+            i += 1
+
+    return s
