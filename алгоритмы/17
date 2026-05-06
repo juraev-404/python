@@ -13,16 +13,17 @@
 
 второй вариант всегда дешевле, значит лицензии с большим r нужно покупать раньше.
 
-def min_cost_buy(r):
-    # r — список коэффициентов роста (r_j > 1)
+def order_buy(r):
+    n = len(r)
+    r = list(enumerate(r))  # (индекс, значение)
 
-    r.sort(reverse=True)  # убывание
-    total_cost = 0
+    for i in range(n):
+        for j in range(n - 1):
+            # если левый должен идти позже — меняем
+            if r[j][1] < r[j+1][1]:
+                r[j], r[j+1] = r[j+1], r[j]
 
-    for t, rate in enumerate(r):
-        total_cost += 100 * (rate ** t)
-
-    return total_cost
+    return [i for i, _ in r]
 
 17_2
 тут чем позже продаём -> тем дешевле
@@ -42,14 +43,14 @@ def min_cost_buy(r):
 стоимость = 100 * (r_i ^ t) + 100 * (r_j ^ (t + 1))
 
 
-def max_revenue_sell(r):
-    # r — список коэффициентов (r_j < 1)
+def order_sell(r):
+    n = len(r)
+    r = list(enumerate(r))
 
-    r.sort()  # возрастание
-    total = 0
+    for i in range(n):
+        for j in range(n - 1):
+            # если левый должен идти позже — меняем
+            if r[j][1] > r[j+1][1]:
+                r[j], r[j+1] = r[j+1], r[j]
 
-    for t, rate in enumerate(r):
-        total += 100 * (rate ** t)
-
-    return total
-
+    return [i for i, _ in r]
