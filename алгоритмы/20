@@ -1,0 +1,18 @@
+participants = [
+    {"name": "Алексей", "swim": 12, "bike": 30, "run": 15},
+    {"name": "Иван",    "swim": 10, "bike": 20, "run": 10},
+    {"name": "Мария",   "swim": 15, "bike": 40, "run": 20},
+    {"name": "Олег",    "swim": 8,  "bike": 25, "run": 12},
+]
+
+
+participants.sort(key=lambda p: p["bike"] + p["run"], reverse=True)
+
+time = 0
+finish = 0
+
+for p in participants:
+    time += p["swim"]
+    finish = max(finish, time + p["bike"] + p["run"])
+
+print(finish)
