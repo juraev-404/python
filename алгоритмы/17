@@ -1,56 +1,64 @@
-17_1
-так как лицензии с большим коэффициентом роста дорожают быстрее значит их нужно покупать как можно раньше
-нужно отсортировать лицензии по убыванию r
-доказательства:
-пусть есть две лицензии i и j, где r_i > r_j.
+# 17 (1)
 
-псли покупать:
+from itertools import permutations
 
-сначала j, потом i:
-стоимость = 100 * (r_j ^ t) + 100 * (r_i ^ (t + 1))
-сначала i, потом j:
-стоимость = 100 * (r_i ^ t) + 100 * (r_j ^ (t + 1))
+def brute_force_licenses(rates):
+    n = len(rates)
 
-второй вариант всегда дешевле, значит лицензии с большим r нужно покупать раньше.
+    best_order = None
+    min_cost = float('inf')
 
-def order_buy(r):
-    n = len(r)
-    r = list(enumerate(r))  # (индекс, значение)
+    # все возможные порядки
+    for order in permutations(range(n)):
 
-    for i in range(n):
-        for j in range(n - 1):
-            # если левый должен идти позже — меняем
-            if r[j][1] < r[j+1][1]:
-                r[j], r[j+1] = r[j+1], r[j]
+        total_cost = 0
 
-    return [i for i, _ in r]
+        # считаем стоимость для данного порядка
+        for month, license_index in enumerate(order):
+            total_cost += 100 * (rates[license_index] ** month)
 
-17_2
-тут чем позже продаём -> тем дешевле
-Отсортировать по возрастанию r
-доказательства:
+        # обновляем минимум
+        if total_cost < min_cost:
+            min_cost = total_cost
+            best_order = order
 
-если r_i < r_j, то цена i падает быстрее.
-
-значит такие товары нужно продавать раньше, чтобы не потерять деньги.
-
-рассмотрим два товара i и j, такие что r_i < r_j.
-
-неправильный порядок (сначала j, потом i):
-стоимость = 100 * (r_j ^ t) + 100 * (r_i ^ (t + 1))
-
-правильный порядок (сначала i, потом j):
-стоимость = 100 * (r_i ^ t) + 100 * (r_j ^ (t + 1))
+    return best_order, min_cost
 
 
-def order_sell(r):
-    n = len(r)
-    r = list(enumerate(r))
+# пример
+rates = [1.05, 1.2, 1.1, 1.4]
 
-    for i in range(n):
-        for j in range(n - 1):
-            # если левый должен идти позже — меняем
-            if r[j][1] > r[j+1][1]:
-                r[j], r[j+1] = r[j+1], r[j]
+order, cost = brute_force_licenses(rates)
 
-    return [i for i, _ in r]
+
+
+#17 (2)
+from itertools import permutations
+
+def brute_force_selling(rates):
+    n = len(rates)
+
+    best_order = None
+    max_profit = -1
+
+    # перебираем все возможные порядки продажи
+    for order in permutations(range(n)):
+
+        total_profit = 0
+
+        # считаем прибыль для данного порядка
+        for month, item_index in enumerate(order):
+            total_profit += 100 * (rates[item_index] ** month)
+
+        # ищем максимальную прибыль
+        if total_profit > max_profit:
+            max_profit = total_profit
+            best_order = order
+
+    return best_order, max_profit
+
+
+# пример
+rates = [0.95, 0.7, 0.85, 0.99]
+
+order, profit = brute_force_selling(rates)
