@@ -1,10 +1,12 @@
-def billboard(M, x, r):
+def billboard(x, r):
+
     n = len(x)
 
     # p[i] — последний совместимый щит
     p = [-1] * n
 
     for i in range(n):
+
         for j in range(i - 1, -1, -1):
 
             if x[i] - x[j] > 5:
@@ -27,12 +29,41 @@ def billboard(M, x, r):
 
         dp[i] = max(take, skip)
 
-    return dp[n - 1]
+    # восстановление ответа
+    result = []
+
+    i = n - 1
+
+    while i >= 0:
+
+        take = r[i]
+
+        if p[i] != -1:
+            take += dp[p[i]]
+
+        skip = dp[i - 1] if i > 0 else 0
+
+        # щит выбран
+        if take > skip:
+
+            result.append(x[i])
+
+            i = p[i]
+
+        # щит не выбран
+        else:
+            i -= 1
+
+    result.reverse()
+
+    return dp[n - 1], result
 
 
 # пример
-M = 20
 x = [6, 7, 12, 14]
 r = [5, 6, 5, 1]
 
-print(billboard(M, x, r))
+profit, coords = billboard(x, r)
+
+print("Максимальная прибыль:", profit)
+print("Координаты щитов:", coords)
