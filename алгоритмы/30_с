@@ -1,0 +1,43 @@
+def max_weight_independent_set(weights):
+    n = len(weights)
+
+    if n == 0:
+        return [], 0
+
+    # dp[i] — максимальный вес для первых i вершин
+    dp = [0] * (n + 1)
+
+    dp[0] = 0
+    dp[1] = weights[0]
+
+    for i in range(2, n + 1):
+        dp[i] = max(dp[i - 1], dp[i - 2] + weights[i - 1])
+
+    # Восстановление решения
+    result = []
+    i = n
+
+    while i >= 1:
+        if i == 1:
+            if dp[i] > 0:
+                result.append(1)
+            break
+
+        if dp[i - 1] >= dp[i - 2] + weights[i - 1]:
+            i -= 1
+        else:
+            result.append(i)
+            i -= 2
+
+    result.reverse()
+
+    return result, dp[n]
+
+
+# Пример
+weights = [1, 4, 5, 4]
+
+vertices, total_weight = max_weight_independent_set(weights)
+
+print("Выбранные вершины:", vertices)
+print("Максимальный вес:", total_weight)
